@@ -1,0 +1,41 @@
+use Library;
+
+INSERT INTO Books (Author, Title, Year) VALUES (N'Hawkins Paula', N'The Girl on the Train', 2015);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Orwell George', N'Animal Farm', 1945);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Hemingway Ernest', N'The Old Man and the Sea', 1952);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Camus Albert', N'The Plague', 1947);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Carle Eric', N'The Very Hungry Caterpillar', 1969);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Steinbeck John', N'East of Eden', 1952);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Fitzgerald Scott', N'The Great Gatsby', 1925);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Kesey Ken', N'One Flew Over The Cuckoo’s Nest', 1962);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Steinbeck John', N'On Mice and Man', 1937);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Kidd Sue Monk', N'The Secret Life of Bees', 2001);
+INSERT INTO Books (Author, Title, Year) VALUES (N'John Paul II', N'Crossing the Threshold of Hope', 1995);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Eco Umberto', N'The Name of the Rose', 1980);
+INSERT INTO Books (Author, Title, Year) VALUES (N'Eco Umberto', N'The Prague Cemetery', 2011);
+
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Leslie', N'Hayes', 6.5600);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Orville', N'Mack', 0.0000);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Agnes', N'Caldwell', 0.0000);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Thomas', N'Martin', 0.0000);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Castel', N'Gandolfo', 21.3700);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Janet', N'Reeds', 31.3400);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Sean', N'Long', 0.0000);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Lois', N'Griffin', 0.0000);
+INSERT INTO Readers (Name, Surname, Debt) VALUES (N'Linda', N'Kelly', 1.4500);
+
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (5, 2, N'2020-01-08', N'2020-02-04');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (7, 1, N'2020-01-23', N'2020-02-05');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (5, 3, N'2020-02-04', N'2020-03-08');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (5, 4, N'2020-02-12', N'2020-02-22');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (3, 4, N'2020-02-23', N'2020-02-25');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (8, 1, N'2020-03-05', null);
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (2, 12, N'2020-03-07', N'2020-05-07');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (3, 7, N'2020-03-09', N'2020-03-19');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (5, 3, N'2020-03-15', N'2020-03-20');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (9, 13, N'2020-04-04', null);
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (1, 8, N'2020-04-08', N'2020-04-21');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (2, 4, N'2020-04-13', N'2020-04-20');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (3, 4, N'2020-04-30', N'2020-05-05');
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (4, 10, N'2020-05-04', null);
+INSERT INTO Rentals (ReaderID, BookID, RentalDate, ReturnDate) VALUES (6, 3, N'2020-05-06', null);
