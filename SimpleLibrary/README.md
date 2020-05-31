@@ -1,14 +1,14 @@
-=SimpleLibrary=
+#SimpleLibrary
 
 Projekt prostej aplikacji do obsługi biblioteki, z użyciem bazy MSSQL.
 
-==1. Kompilacja==
+##1. Kompilacja
 Powinno wystarczyć skompilowanie w Visual Studio (pisane w VS 2019).
 
-==2. Utworzenie bazy danych==
+##2. Utworzenie bazy danych
 Należy wykonać polecenia zawarte w plikach .sql.
 
-==3. Połączenie z bazą danych==
+##3. Połączenie z bazą danych
 Przy otwieraniu aplikacji jest wybór metody uruchomienia. Można wybrać
 Windows Authentication z localhost lub połączyć się ze zdalnym serwerem.
 Aby to zrobić należy podać dane do połączenia:
@@ -19,7 +19,7 @@ Aby to zrobić należy podać dane do połączenia:
 - użytkownik
 - hasło
 
-==3. Zasady działania==
+##3. Zasady działania
 Są trzy tabele: 
 - Readers - informacje o czytelnikach biblioteki: imię, nazwisko, zaległości w płatnościach
 - Books - informacje o książkach: tytuł, autor, rok wydania
