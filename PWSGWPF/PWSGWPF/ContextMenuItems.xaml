@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PWSGWPF">
+    
+    <local:AddDir x:Key="AddDirCommand"/>
+    <local:AddImage x:Key="AddImageCommand"/>
+    <local:AddPasswords x:Key="AddPasswordsCommand"/>
+    <local:RenameFile x:Key="RenameFileCommand"/>
+    <local:RemoveFile x:Key="RemoveFileCommand"/>
+    
+    <x:Array Type="{x:Type MenuItem}" x:Key="fileTopMI" x:Shared="False">
+        <MenuItem Header="{Binding Name}" IsEnabled="False"/>
+    </x:Array>
+    <x:Array Type="{x:Type MenuItem}" x:Key="directoryMI" x:Shared="False">
+        <MenuItem Header="Add Directory"
+                  Command="{StaticResource AddDirCommand}"
+                  CommandParameter="{Binding}"/>
+        <MenuItem Header="Add File">
+            <MenuItem Header="Picture"
+                      Command="{StaticResource AddImageCommand}"
+                      CommandParameter="{Binding}"/>
+            <MenuItem Header="Password"
+                      Command="{StaticResource AddPasswordsCommand}"
+                      CommandParameter="{Binding}"/>
+        </MenuItem>
+    </x:Array>
+    <x:Array Type="{x:Type MenuItem}" x:Key="fileBottomMI" x:Shared="False">
+        <MenuItem Header="Rename"
+                  Command="{StaticResource RenameFileCommand}"
+                  CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}"
+                  />
+        <MenuItem Header="Delete"
+                  Command="{StaticResource RemoveFileCommand}"
+                  CommandParameter="{Binding}"/>
+    </x:Array>
+
+    <CompositeCollection x:Key="DirectoryCM" x:Shared="False">
+        <CollectionContainer Collection="{StaticResource ResourceKey=fileTopMI}"/>
+        <Separator/>
+        <CollectionContainer Collection="{StaticResource ResourceKey=directoryMI}"/>
+        <Separator/>
+        <CollectionContainer Collection="{StaticResource ResourceKey=fileBottomMI}"/>
+    </CompositeCollection>
+
+    <CompositeCollection x:Key="FileCM" x:Shared="False">
+        <CollectionContainer Collection="{StaticResource ResourceKey=fileTopMI}"/>
+        <Separator/>
+        <CollectionContainer Collection="{StaticResource ResourceKey=fileBottomMI}"/>
+    </CompositeCollection>
+</ResourceDictionary>

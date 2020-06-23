@@ -1,0 +1,27 @@
+﻿---- Xml Interface ----
+<from>Novigrad</from>
+<to>Gotham</to>
+<train>False</train>
+<car>True</car>
+<minPopulation>100000</minPopulation>
+<restaurantRequired>False</restaurantRequired>
+<solver>BFS</solver>
+<problem>Cost</problem>
+<City/>
+<Name>Novigrad</Name>
+<Population>800000</Population>
+<HasRestaurant>False</HasRestaurant>
+
+---- KeyValue Interface ----
+from=Novigrad
+to=Gotham
+train=False
+car=True
+minPopulation=100000
+restaurantRequired=False
+solver=BFS
+problem=Cost
+=City=
+Name=Novigrad
+Population=800000
+HasRestaurant=False

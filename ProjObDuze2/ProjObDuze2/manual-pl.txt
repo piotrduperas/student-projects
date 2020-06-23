@@ -1,0 +1,119 @@
+0. Dodaj komentarz do wszystkich plików, jakie zmieniasz lub dodajesz. 
+Pliki bez komentarza:
+//  Potwierdzam samodzielność powyższej pracy oraz niekorzystanie przeze mnie z niedozwolonych źródeł
+//  <imię> <nazwisko>
+NIE BĘDĄ SPRAWDZANE
+
+Zostało Ci zlecone napisanie aplikacji znajdującej trasę (niekoniecznie najszybszą) między dwoma danymi miastami.
+Każde miasto składa się z:
+- nazwy,
+- populacji,
+- informacji, czy ma restaurację.
+
+Uwaga - zakładamy, że nazwa miasta jednoznacznie je identyfikuje
+(tj. w bazach istnieje co najwyżej jeden wpis z miastem o danej nazwie i miasto to można uzyskać tylko dzięki nazwie).
+
+Każda trasa ma informację o:
+- mieście początkowym,
+- mieście końcowym,
+- koszcie,
+- czasie podróży,
+- rodzaju pojazdu, którego wymaga (jedno z: Samochód, Pociąg).
+Trasy uważamy za jednokierunkowe (nie można ich po prostu odwrócić). Zarówno koszt, jak i czas podróży są nieujemne dla każdej trasy.
+
+Sporo zostało już napisane przez Twojego poprzednika (który zna się na algorytmach, ale niestety niezbyt na wzorcach projektowych - a teraz jest na urlopie).
+Gotowe są:
+- algorytmy wyszukujące trasy DFS, BFS i algorytm Dijkstry - zwróć uwagę, że DFS i BFS zwrócą tę samą trasę niezależnie od typu optymalizacji 
+	(koszt/czas) i nie musi ona być optymalna pod żadnym z tych względów
+- bazy miast i połączeń - są one dostarczane z zewnątrz i nie interesuje nas ich tworzenie, natomiast mogą być zapisane jako inne klasy (Twój poprzednik przygotował
+	dwie implementacje - lista połączeń wychodzących z każdego wierzchołka i macierz połączeń)
+	
+Twoim celem jest:
+
+1. Zaimplementowanie dwóch rodzin interfejsów
+
+1a. XML
+Dane będą odczytywane i wyświetlane w postaci XML (<Klucz>Wartość</Klucz>). Nie jest wymagane użycie XMLSchema lub innych specjalizowanych narzędzi.
+
+1b. Klucz=Wartość
+Dane będą odczytywane i wyświetlane w postaci Klucz=Wartość.
+
+Użytkownik musi mieć możliwość wyboru:
+- miasta startowego,
+- miasta docelowego,
+- rodzaju algorytmu wyboru trasy,
+- optymalizowanej wartości (czas lub koszt),
+- minimalnej populacji miasta, przez które ma przebiegać trasa (wliczając wierzchołek startowy i końcowy),
+- dozwolonych pojazdów (samochód lub pociąg),
+- informacji, czy miasta na trasie muszą posiadać restaurację.
+
+Musi również powstać komponent prezentujący ścieżkę otrzymaną w wyniku.
+
+W tym celu potrzebujemy możliwości wczytywania danych następujących typów:
+- tekst,
+- liczba,
+- zmienna boolowska (prawda/fałsz).
+
+Za wczytywanie danych odpowiedzialny jest interfejs IForm, o następujących metodach:
+- Insert - wczytanie rekordu danych
+- GetBoolValue, GetTextValue, GetNumericValue - zwrócenie wartości przypisanej do pola o nazwie podanej jako parametr
+
+Wyświetlanie będzie realizowane przez interfejs IDisplay, którego metoda Print powinna wyświetlać informacje o trasie.
+
+Oba interfejsy stanowią część całego systemu (ISystem).
+
+Uwagi do 1a i 1b:
+Dodanie kolejnej rodziny interfejsów nie powinno wymagać zmiany obecnie istniejących.
+Dodanie kolejnej opcji do interfejsu powinno być proste i nie wymagać zmiany kodu wewnątrz klasy.
+Przykładowe pliki z danymi wejściowymi i oczekiwanym wyjściem znajdują się w katalogu Samples.
+
+2. Dodanie możliwości przeglądania wierzchołków
+
+Bazy grafowe są utworzone, jednak brakuje w nich możliwości przeglądania wychodzących z wierzchołka krawędzi, które wymaga innego zachowania w zależności od implementacji.
+
+2a. AdjacencyListDatabase 
+W tym grafie listy wychodzących ścieżek są trzymane jako słownik, który dla każdego miasta trzyma listę wychodzących zeń dróg.
+Graf ten nie musi być grafem prostym (dozwolonych jest wiele krawędzi wychodzących z v i trafiających do u).
+
+2b. MatrixDatabase
+W tym grafie utrzymywana jest lista list dróg. Jeśli dana trasa nie istnieje, w odpowiadającym jej miejscu znajduje się null.
+Możesz założyć, że graf ten jest grafem prostym bez pętli (z v do u istnieje co najwyżej jedna krawędź)
+
+Opracuj interfejs pozwalający przeglądać wychodzące krawędzie bez konieczności znajomości implementacji bazy.
+Pamiętaj, że gdy kolega wróci z urlopu, może chcieć stworzyć nowy typ bazy, który może np. pobierać dane z sieci, zatem nie możesz pobrać wszystkich wychodzących krawędzi naraz, a przeglądać je po kolei.
+
+3. Dodanie interfejsu do utworzonych algorytmów
+
+Algorytmy są już napisane i ich kod nie powinien ulec zmianie. Można ich swobodnie używać w swoim kodzie.
+Pamiętaj jednak, że Twój poprzednik, kiedy wróci z urlopu, może chcieć napisać jeszcze inny algorytm i dodanie go nie powinno wymagać zmiany pozostałych.
+Jedynym miejscem, które musiałoby być zmienione, to sposób obsługi zapytania (o czym w punkcie 5.).
+Nie jest planowane dodawanie nowych metryk na trasach.
+
+4. Mechanizm łączenia i filtrowania baz
+Zapytanie może wymagać odfiltrowywania pewnych części bazy (niektórych ścieżek bądź całych miast). Zapytanie może też wymagać łączenia dwóch różnych baz. Opracuj rozwiązanie, które na to pozwoli.
+
+Uwagi:
+- zauważ, że łączenie baz ma wpływ na operacje zarówno pobierania miasta po mieście (miasto może nieistnieć we wszystkich bazach naraz) jak i wychodzące krawędzie,
+- filtrowanie ma również wpływ na ograniczenie wychodzących krawędzi.
+
+5. Obsługa zapytania
+Obsługa zapytania powinna:
+
+- dostać potrzebne dane z dowolnego interfejsu użytkownika za pomocą RequestMapper,
+- sprawdzić, czy dane te są poprawne (niepuste from i to, nieujemna minimalna populacja, dozwolony przynajmniej jeden typ pojazdu),
+- wykryć, jaki algorytm jest potrzebny,
+- dostarczyć dane do algorytmu,
+- pozwalać na dodanie filtrów nakładanych na miasta i drogi.
+
+Uwagi:
+- Użycie dostarczonego RequestMappera jest wymagane
+- Niedozwolone jest użycie instrukcji switch ani kaskadowe lub zagnieżdżone użycie instrukcji if (dozwolone jest jedynie sprawdzenie if(jakas_wartość = stała)).
+	Dodatkowo, dodanie nowej dozwolonej w interfejsie użytkownika stałej (np. nowy rodzaj algorytmu) powinno zmieniać istniejący kod tylko w jednym miejscu (ale może wymagać utworzenia nowej klasy).
+
+Uwagi ogólne:
+- Zabronione jest użycie słowa kluczowego yield, typeof, is, as, dziedziczenie po interfejsie IEnumerable oraz użycie wyrażeń lambda.
+- Zabronione jest też użycie refleksji i jakiekolwiek formy jawnego sprawdzania typu obiektu.
+- Zabronione jest użycie obiektów Func<...>.
+- Każdy plik zawiera informację o tym, czy można (i w jakim zakresie) go modyfikować. Możesz (zalecane jest) tworzyć nowe pliki i modyfikować je. 
+	W plikach, w których dozwolona jest modyfikacja, zabronione jest modyfikowane dostarczonego kodu.
+- Pamiętaj, że zadanie to jest skupione wokół wzorców projektowych, a nie wokół algorytmów. Przyjęty w zadaniu sposób reprezentacji grafu nie zapewnia największej wydajności.
